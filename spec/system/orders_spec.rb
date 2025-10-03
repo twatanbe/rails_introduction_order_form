@@ -15,6 +15,7 @@ RSpec.describe "注文フォーム", type: :system do
     fill_in 'メールアドレス', with: email
     fill_in '電話番号', with: telephone
     fill_in 'お届け先住所', with: delivery_address
+    select '銀行振込', from: '支払い方法'
 
     click_on '確認画面へ'
 
@@ -34,6 +35,7 @@ RSpec.describe "注文フォーム", type: :system do
     expect(order.email).to eq email
     expect(order.telephone).to eq telephone
     expect(order.delivery_address).to eq delivery_address
+    expect(order.payment_method_id).to eq 2
   end
 
   context '入力情報に不備がある場合' do
@@ -45,6 +47,7 @@ RSpec.describe "注文フォーム", type: :system do
       fill_in 'メールアドレス', with: email
       fill_in '電話番号', with: '090123456789'
       fill_in 'お届け先住所', with: delivery_address
+      select '銀行振込', from: '支払い方法'
 
       click_on '確認画面へ'
 
@@ -62,6 +65,7 @@ RSpec.describe "注文フォーム", type: :system do
       fill_in 'メールアドレス', with: email
       fill_in '電話番号', with: telephone
       fill_in 'お届け先住所', with: delivery_address
+      select '銀行振込', from: '支払い方法'
 
       click_on '確認画面へ'
 
@@ -73,10 +77,11 @@ RSpec.describe "注文フォーム", type: :system do
 
       # expect(page).to have_field 'order_name', with: name
       # expect(find(:xpath, "//div[text()=\"お名前\"]//following-sibling::input[@value=\"#{name}\"]").present?).to eq true
-      fill_in 'お名前', with: name
+      expect(page).to have_field 'お名前', with: name
       expect(page).to have_field 'メールアドレス', with: email
       expect(page).to have_field '電話番号', with: telephone
       expect(page).to have_field 'お届け先住所', with: delivery_address
+      expect(page).to have_select '支払い方法', selected: '銀行振込'
 
       click_on '確認画面へ'
 
@@ -96,6 +101,7 @@ RSpec.describe "注文フォーム", type: :system do
       expect(order.email).to eq email
       expect(order.telephone).to eq telephone
       expect(order.delivery_address).to eq delivery_address
+      expect(order.payment_method_id).to eq 2
     end
   end  
 end

@@ -6,8 +6,8 @@ class Order < ApplicationRecord
   validates :telephone, presence: true, length: { maximum:11 }, numericality: { only_integer: true }
   validates :delivery_address, presence: true, length: { maximum:100 }
 
-  after_initialize :format_telephone
-  after_initialize :format_email
+  # after_initialize :format_telephone
+  # after_initialize :format_email
 
   private
 

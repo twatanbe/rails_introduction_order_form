@@ -12,6 +12,7 @@ RSpec.describe Order, type: :model do
     let(:delivery_address) { '東京都葛飾区亀有公園前' }
     let(:payment_method_id) { 1 }
     let(:other_comment) { 'テストコメントです' }
+    let(:direct_mail_enabled) { true }
     let(:params) do
       {
         name:,
@@ -20,6 +21,7 @@ RSpec.describe Order, type: :model do
         delivery_address:,
         payment_method_id:,
         other_comment:,
+        direct_mail_enabled:
       }
     end
 
@@ -38,13 +40,11 @@ RSpec.describe Order, type: :model do
 
       it {is_expected.to eq false}
     end
-
     context 'メールアドレスがの書式が正しくない場合' do
       let(:email) {'testexample.com'}
 
       it {is_expected.to eq false}
     end
-
     context 'メールアドレスが全角の場合' do
       let(:email) {'ｓａｍｐｌｅ@ｅｘａｍｐｌｅ．ｃｏｍ'}
 
@@ -56,19 +56,16 @@ RSpec.describe Order, type: :model do
 
       it {is_expected.to eq false}
     end
-
     context '電話番号が全角の場合' do
       let(:telephone) {'０９０１２３４５６７８'}
 
       it {is_expected.to eq false}
     end
-
     context '電話番号に数字以外が含まれている場合' do
       let(:telephone) {'090-1234-5678'}
 
       it {is_expected.to eq false}
     end
-
     context '電話番号が12桁の場合' do
       let(:telephone) {'090123456789'}
 
@@ -80,18 +77,31 @@ RSpec.describe Order, type: :model do
 
       it {is_expected.to eq false}
     end
+
     context '支払い方法が未入力の場合' do
       let(:payment_method_id) { nil }
 
       it {is_expected.to eq false}
     end
+
     context 'その他・ご要望が空白の場合' do
       let(:other_comment) { '' }
 
       it {is_expected.to eq true}
     end
-    context 'その他・ご要望が空白の場合' do
+    context 'その他・ご要望が1000文字の場合' do
+      let(:other_comment) { 'あ' * 1_000 }
+
+      it {is_expected.to eq true}
+    end
+    context 'その他・ご要望が1001文字の場合' do
       let(:other_comment) { 'あ' * 1_001 }
+
+      it {is_expected.to eq false}
+    end
+
+    context 'メールマガジンの配信要否が未選択の場合' do
+      let(:direct_mail_enabled) { nil }
 
       it {is_expected.to eq false}
     end

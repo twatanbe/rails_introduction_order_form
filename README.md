@@ -11,5 +11,6 @@ order_form.zip解凍後のファイル名はリポジトリに合ったタイト
 $ docker compose up
 
 ### Summary
-docker compose upが完了したらひとまずは完成
-そこから学習として講座を進めていく
+docker compose upが完了したらひとまずは完成  
+そこから学習として講座を進めていく  
+※講座は[こちら](https://www.udemy.com/course/rails-forms/?couponCode=MT251015JP)から購入可能

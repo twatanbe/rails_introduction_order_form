@@ -12,6 +12,7 @@ ApplicationRecord.transaction do
   Order.delete_all
   PaymentMethod.delete_all
   InflowSource.delete_all
+  Product.delete_all
 
   PaymentMethod.create(id: 1, name: 'クレジットカード')
   PaymentMethod.create(id: 2, name: '銀行振込')
@@ -24,4 +25,11 @@ ApplicationRecord.transaction do
   InflowSource.create(id: 3, name: '新聞・雑誌')
   InflowSource.create(id: 4, name: '情報サイト')
   InflowSource.create(id: 5, name: 'その他')
+
+  Product.create(id: 1, name: 'フィリピン産バナナ', price: 100)
+  Product.create(id: 2, name: '栃木県産いちご', price: 300)
+  Product.create(id: 3, name: '和歌山県産みかん', price: 500)
+  Product.create(id: 4, name: '青森県産りんご', price: 700)
+  Product.create(id: 5, name: '台湾産パイナップル', price: 900)
+  Product.create(id: 6, name: '宮崎県産マンゴー', price: 1200)
 end

@@ -1,7 +1,6 @@
 # 環境構築（更新日：20251014）
 ### STEP1
-下記リンクからファイルをダウンロード
-
+下記リンクからファイルをダウンロード  
 https://drive.google.com/file/d/1_-yV5SDVE55KlJzvs4qw9laFlNZ0BJ6G/view?usp=sharing
 
 ### STEP2

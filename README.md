@@ -13,6 +13,3 @@ $ docker compose up
 ### まとめ
 docker compose upが完了したらひとまずは完成
 そこから学習として講座を進めていく
-
-### 完成版
-現在未記載

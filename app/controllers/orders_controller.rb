@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
 
   private
 
+  # rubocop:disable Metrics/MethodLength
   def order_params
     params
       .require(:order)
@@ -54,6 +55,7 @@ class OrdersController < ApplicationController
               inflow_source_ids: [],
               order_products_attributes: %i[product_id quantity])
   end
+  # rubocop:enable Metrics/MethodLength
 
   def filter_order_products
     @order.order_products = @order.order_products
